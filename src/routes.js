@@ -1,11 +1,10 @@
 import React from 'react';
-// import App from './containers/AppContainer';
 
 import App from './components/App'
-// import SpeechWriter from './components/SpeechWriter'
 import Home from './components/Home'
 import Saved from './components/Saved'
 import Recorder from './components/Recorder'
+// import NotFound from './components/NotFound'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -17,6 +16,7 @@ const Routes = () => {
         <Route exact path="/write" component={Home} />
         <Route exact path="/record" component={Recorder} />
         <Route exact path="/saved" component={Saved} />
+        {/*<Route path="/*" component={NotFound} />*/}
       </div>
     </Router>
   )
