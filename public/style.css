@@ -1,0 +1,288 @@
+/*GENERAL STYLES*/
+a, a:visited {
+    color: black; 
+    text-decoration: none;
+}
+
+* {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 400;
+}
+
+button:focus, textarea:focus, input:focus {outline:0;}
+
+button {
+    margin-right: 5%; 
+    margin-left: 10px; 
+}
+
+textarea {
+    border: 3px solid #cccccc;
+    padding: 5px; 
+}
+/*HOMEPAGE HERO VIDEO styles from coverr*/
+.homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+}
+.no-video .video-container video,
+.touch .video-container video {
+    display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+.video-container {
+    position: relative;
+    bottom: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+.video-container .poster img {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+.video-container .filter {
+    z-index: 100;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+.video-container video {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+}
+.video-container video.fillWidth {
+    width: 100%;
+}
+
+/*OTHER HOMEPAGE STYLES*/
+/*Transparent color over the video*/
+#overlay {
+    position: absolute;
+    top: 0; 
+    right: 0; 
+    left: 0; 
+    bottom: 0; 
+    background: rgba(78, 83, 104, 0.5);
+}
+
+#lingoly {
+    margin-top: 15%; 
+    margin-left: 35%;  
+    margin-bottom: 0.2em; 
+    font-size: 8em; 
+    color: #efedec ;
+}
+
+#header-tag {
+    margin-left: 30%; 
+    color: #efedec; 
+    font-weight: 400; 
+}
+
+#start-here {
+    background: rgba(0, 0, 0, 0);
+    border: 1px solid #efedec;
+    color: #efedec; 
+    font-size: 2em; 
+    padding: 10px;  
+    margin-left: 34%; 
+    margin-top: 2em; 
+    width: 13em; 
+    transition: background-color 0.5s, color 0.5s, border 0.5s;
+  -webkit-transition: background-color 0.5s, color 0.5s, border 0.5s; /*adds browser support for transitions*/
+  -moz-transition: background-color 0.5s, color 0.5s, border 0.5s;
+}
+
+#start-here:hover {
+    color: black; 
+    background: rgba(255, 255, 255, 0.4); 
+    border: none; 
+}
+
+/*
+APP PAGE
+*/
+
+.app {
+    height: 100vh; 
+}
+
+#start-writing {
+    margin: 0 auto; 
+}
+
+#mynav {
+    margin-bottom: 0; 
+    height: 7vh; 
+}
+.navbar-header {
+    margin-top: 1%; 
+    font-size: 1.5em; 
+}
+
+/*CONTROL PANEL*/
+#controls {
+    background: #fbfbfb; 
+    height: 93vh; 
+}
+
+/*RECORDER*/
+#recorder {
+    margin-top: 5%;
+}
+#recorder-header {
+    margin: 5% 0 0 32%; 
+    font-size: 2em; 
+}
+
+audio {
+    width: 82%; 
+    margin: 5% 0 0 5%; 
+}
+
+#start-recording, #stop-recording {
+    border: 1px solid #333;  
+    background-color: rgba(0, 0, 0, 0); 
+    color: #333; 
+    font-size: 1.5em; 
+    font-weight: 300; 
+}
+
+#start-recording {
+    margin-left: 25%; 
+}
+
+#stop-recording {
+    margin-left: 10%; 
+}
+
+#audio-canvas {
+    height: 100px; 
+    width: 100%; 
+    margin-top: 0; 
+    margin-left: 5px; 
+}
+
+.glyphicon.glyphicon-download {
+    font-size: 2em; 
+    margin-left: 2%; 
+    margin-bottom: 15%; 
+}
+
+.download-link {
+    display: inline-block; 
+    margin-top: 5%; 
+}
+
+.audiofile {
+    height: 40px; 
+}
+
+/*TIMER*/
+#timer-header {
+    margin-left: 40%; 
+    margin-top: 10%; 
+    font-size: 2em; 
+}
+
+#time-display {
+    margin-left: 2%; 
+}
+
+#time-display h1 {
+    font-size: 7em; 
+    margin-top: 0; 
+}
+
+#time-buttons {
+    margin-left: 3%; 
+}
+
+#time-buttons button {
+    border: 1px solid #333;  
+    background-color: rgba(0, 0, 0, 0); 
+    color: #333; 
+    font-size: 1.5em; 
+    font-weight: 300; 
+    margin: 4px; 
+}
+
+/*GRAMMAR CHECKER*/
+
+form {
+    width: 490px; 
+}
+
+#correct {
+    width: 400px; 
+    margin-left: 5%; 
+}
+
+#speechwriter h3 {
+    font-size: 3em; 
+}
+
+/*
+Pronunciation dictionary
+*/
+
+#prondict {
+    padding-left: 10%; 
+}
+
+
+#pron-audio {
+    margin-left: 0; 
+}
+
+#ipa {
+    margin-left: 30%; 
+}
+
+.mdl-textfield__input {
+    width: 50%; 
+}
+
+#look-up {
+    margin-left: 20%; 
+}
+/*
+Fade in Animations
+*/
+
+.anim {
+    animation: anim 1s ease-out 0s 1;  
+}
+
+
+@keyframes anim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+         opacity: 1; 
+    }
+}
+
+/**/
+/**//**/
+/**/
+/**//**/
+/**/
+/**//**/
+/**/
+/**//**/
+/**/
+/**/
+.hwt-input {
+    display: none; 
+}

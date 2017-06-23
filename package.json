@@ -1,0 +1,42 @@
+{
+  "name": "lingoly",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "classnames": "^2.2.5",
+    "concurrently": "^3.5.0",
+    "debug": "^2.6.8",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "nodemon": "^1.11.0",
+    "pg": "^6.4.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-highlighted-textarea": "0.0.2",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "^4.0.8",
+    "react-speech-recognition": "^1.0.1",
+    "redux": "^3.7.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "sequelize": "^4.2.0",
+    "yargs": "^8.0.2"
+  },
+  "devDependencies": {
+    "chalk": "^1.1.3",
+    "path": "^0.12.7",
+    "react-dev-utils": "^3.0.0",
+    "react-scripts": "^1.0.7"
+  },
+  "scripts": {
+    "start": "concurrently \"react-scripts start\" \"nodemon server\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "seed": "node db/seed.js"
+  },
+  "proxy": "http://localhost:8000"
+}
