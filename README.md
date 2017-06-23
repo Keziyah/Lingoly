@@ -2,8 +2,11 @@
 A speech to text speechwriting app for language learners. 
 A Stackathon (Fullstack Academy/Grace Hopper Academy Student Hackathon) project by Keziyah Lewis.
 
+# Tech
+React | PostgreSQL | Sequelize | Express | Web Speech API | LanguageTool.org API | Merriam-Webster Learners Dictionary API | create-react-app-fullstack | react-mic | react-speech-recognition | react-highlighted-textarea
+
 ## Installation
-Clone, then npm run start. 
+Clone, then npm run start. Make sure you have Postgres running. 
 
 ## Usage
 See a video demo here: https://www.youtube.com/watch?v=0DvmqlenAXI

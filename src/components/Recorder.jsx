@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {setBlob} from '../actions'
 import { ReactMic } from './react-mic/src';
 import AudioFiles from './AudioFiles'
 
 
 //Based on the ReactMic example
-export default class Recorder extends Component {
+class Recorder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      record: false,
-      blobs: []
+      record: false
     }
     this.onStop = this.onStop.bind(this)
   }
@@ -28,13 +29,11 @@ export default class Recorder extends Component {
 
   onStop(recordedBlob) {
     console.log('recordedBlob is: ', recordedBlob);
-    if (this.state.blobs.length === 3) {
-      this.state.blobs.shift()
-    }
-    this.setState({ blobs: this.state.blobs.concat(recordedBlob) })
+    this.props.setBlob(recordedBlob)
   }
 
   render() {
+    console.log("RECORDER STORE", this.props.recorder)
     return (
       <div id="recorder">
         <ReactMic
@@ -49,9 +48,12 @@ export default class Recorder extends Component {
           </button>
         </div>
 
-        <AudioFiles files={this.state.blobs} />
+        <AudioFiles files={this.props.recorder.blobs} />
       </div>
     );
   }
 }
+
+const mapState = ({recorder}) => ({recorder})
+export default connect(mapState, {setBlob})(Recorder)
 

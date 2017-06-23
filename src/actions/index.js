@@ -1,5 +1,16 @@
 import axios from 'axios';
 
+//RECORDER
+export const SET_BLOB = "SET_BLOB"
+export const setBlob = (blob) => {
+    return {
+        type: SET_BLOB, 
+        payload: blob
+    }
+}
+
+
+//EXPRESS TEST
 export const EXPRESS_TEST_START = "EXPRESS_TEST_START";
 export const expressTestStart = () => {
     return { type: EXPRESS_TEST_START }
@@ -26,6 +37,7 @@ export const expressTest = () => {
     }
 }
 
+//POSTGRES TEST
 export const DB_TEST_START = "DB_TEST_START";
 export const dbTestStart = () => {
     return { type: DB_TEST_START }

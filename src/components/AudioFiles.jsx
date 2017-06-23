@@ -1,6 +1,7 @@
 import React from 'react';
 
 const AudioFiles = (props) => {
+    console.log("PROPS", props)
     return (
         <div>
             {
