@@ -17,3 +17,5 @@ not sure how to pronounce a word.
 Eventually, this will be a mobile app, and will have features such as a more comprehensive dictionary, 
 and an admin dashboard for teachers. 
 
+(This is a new, post-hackathon repo. For a previous commit history, see this: https://github.com/Keziyah/LingolyOld/commits/master)
+
