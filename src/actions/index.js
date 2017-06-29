@@ -35,3 +35,34 @@ export const corrected = (res) => {
         payload: res
     }
 }
+
+//Save(d) Speeches
+
+export const SAVE_SPEECH = "SAVE_SPEECH"
+export const GET_SPEECHES = "GET_SPEECH"
+
+export const saveSpeech = (text) => {
+        return dispatch => {
+        axios.post('/api/speeches', {content: text})
+        .then(res => console.log(res.data))
+        .catch(console.error)
+    }
+}
+
+export const getSpeeches = () => {
+    return dispatch => {
+        axios.get('/api/speeches')
+            .then(res => {
+                console.log("INDEX", res.data)
+                return dispatch(allSpeeches(res.data))
+            })
+            .catch(console.error)
+    }
+}
+
+export const allSpeeches = (res) => {
+    return {
+        type: GET_SPEECHES,  
+        payload: res
+    }
+}

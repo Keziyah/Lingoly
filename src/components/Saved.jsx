@@ -1,32 +1,19 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
+import {getSpeeches} from '../actions/index.js'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-export default class Saved extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            speeches: []
-        }
-    }
-
+class Saved extends Component {
     componentDidMount() {
-        axios.get('/api/speeches')
-            .then(res => {
-                this.setState({ speeches: res.data })
-                console.log("DATA", res.data)
-            })
-            .catch(console.error)
+        this.props.getSpeeches()
     }
-
-    render() {
-        console.log("STATE", this.state)
+        render() {
         return (
             <div className="container anim">
                 <h1>Hello here are your speeches</h1>
                 {
-                    this.state.speeches && this.state.speeches.map(speech => {
+                    this.props.saved && this.props.saved.map(speech => {
                        return <h3 key={speech.id}>{speech.id}. {speech.content}</h3>
                     })
                 }
@@ -34,5 +21,8 @@ export default class Saved extends Component {
                 <Link to="/"><button className='mdl-button mdl-js-button mdl-button--raised' >Splash</button></Link>
             </div>
         )
-    }
+        }
 }
+
+const mapState = ({saved}) => ({saved: saved.speeches})
+export default connect(mapState, {getSpeeches})(Saved)

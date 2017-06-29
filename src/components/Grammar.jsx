@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {correctGrammar} from '../actions/index.js'
-import axios from 'axios'
+import {correctGrammar, saveSpeech} from '../actions/index.js'
+// import axios from 'axios'
 import HighlightedTextarea from 'react-highlighted-textarea'
 
 //using the language tool api: https://languagetool.org/http-api/swagger-ui/#!/default/post_check 
@@ -50,9 +50,7 @@ class Grammar extends Component {
     }
 
     saveSpeech() {
-        axios.post('/api/speeches', {content: this.state.text})
-        .then(res => console.log(res.data))
-        .catch(console.error)
+        this.props.saveSpeech(this.state.text)
     }
 
     render() {
@@ -89,7 +87,7 @@ class Grammar extends Component {
 }
 
 const mapState = ({correct}) => ({corrections: correct.correctedText})
-export default connect(mapState, {correctGrammar})(Grammar)
+export default connect(mapState, {correctGrammar, saveSpeech})(Grammar)
 
 //A person clicks show grammar checkers and this text area appears with what they said
 //Check grammar is disabled until they edit their speech. 
