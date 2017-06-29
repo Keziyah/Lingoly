@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Recorder from './Recorder'
 import Timer from './Timer'
@@ -6,7 +7,7 @@ import SpeechWriter from './SpeechWriter'
 import Grammar from './Grammar'
 import PronDict from './PronDict'
 
-export default class Home extends Component {
+class Home extends Component {
     constructor() {
         super()
 
@@ -18,12 +19,7 @@ export default class Home extends Component {
 
         this.toggleSpeechWriter = this.toggleSpeechWriter.bind(this)
         this.togglePron = this.togglePron.bind(this)
-        // this.checkGrammar = this.checkGrammar.bind(this)
     }
-
-    // checkGrammar() {
-    //     this.setState({ grammar: !this.state.grammar, shouldShowSpeechWriter: false })
-    // }
 
     toggleSpeechWriter() {
         this.setState({shouldShowSpeechWriter: !this.state.shouldShowSpeechWriter, grammar: !this.state.grammar})
@@ -68,7 +64,7 @@ export default class Home extends Component {
                         <div className="col-md-7">
                         {this.state.shouldShowSpeechWriter && <SpeechWriter checkGrammar={this.toggleSpeechWriter}/>}
                         {/*{Here, add transcript={the transcript sent from speechwriter to redux}}*/}
-                        {this.state.grammar && <Grammar />}
+                        {this.state.grammar && <Grammar transcript={this.props.draft}/>}
                         </div>
                         <div id="prondict" className="col-md-5">
                             {this.state.shouldShoulPron && <PronDict />}
@@ -79,3 +75,6 @@ export default class Home extends Component {
         )
     }
 }
+
+const mapState = ({draft}) => ({draft: draft.text})
+export default connect(mapState, null)(Home)

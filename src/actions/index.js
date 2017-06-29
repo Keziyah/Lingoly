@@ -6,3 +6,11 @@ export const setBlob = (blob) => {
         payload: blob
     }
 }
+
+export const UPDATE_DRAFT = "UPDATE_DRAFT"
+export const updateDraft = (draft) => {
+    return {
+        type: UPDATE_DRAFT, 
+        payload: draft
+    }
+}
