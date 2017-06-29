@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Recorder from './Recorder'
 import Timer from './Timer'
 import SpeechWriter from './SpeechWriter'
+import Grammar from './Grammar'
 import PronDict from './PronDict'
 
 export default class Home extends Component {
@@ -10,16 +11,22 @@ export default class Home extends Component {
         super()
 
         this.state = {
-            shouldShowSpeechWriter: false, 
-            shouldShoulPron: false
+            shouldShowSpeechWriter: true, 
+            shouldShoulPron: false, 
+            grammar: false
         }
 
         this.toggleSpeechWriter = this.toggleSpeechWriter.bind(this)
         this.togglePron = this.togglePron.bind(this)
+        // this.checkGrammar = this.checkGrammar.bind(this)
     }
 
+    // checkGrammar() {
+    //     this.setState({ grammar: !this.state.grammar, shouldShowSpeechWriter: false })
+    // }
+
     toggleSpeechWriter() {
-        this.setState({shouldShowSpeechWriter: !this.state.shouldShowSpeechWriter})
+        this.setState({shouldShowSpeechWriter: !this.state.shouldShowSpeechWriter, grammar: !this.state.grammar})
     }
 
     togglePron() {
@@ -34,8 +41,8 @@ export default class Home extends Component {
                 <nav className="navbar navbar-default" id="mynav">
                     <div className="container">
                         <div className="navbar-header">
-                            <button onClick={this.toggleSpeechWriter} id="start-writing" className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                {this.state.shouldShowSpeechWriter ? "Exit Speechwriter" : "Start Writing"}
+                            <button onClick={this.toggleSpeechWriter} id="start-writing" className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style={{ visibility: this.state.shouldShowSpeechWriter ? "hidden" : "visible"}}>
+                                 Start Writing
                             </button>
                             <button onClick={this.togglePron} id="show-pron" className="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
                                 {this.state.shouldShoulPron ? "Hide Dictionary" : "Show IPA Dictionary"}
@@ -59,7 +66,9 @@ export default class Home extends Component {
 
                     <div className="col-md-8">
                         <div className="col-md-7">
-                        {this.state.shouldShowSpeechWriter && <SpeechWriter />}
+                        {this.state.shouldShowSpeechWriter && <SpeechWriter checkGrammar={this.toggleSpeechWriter}/>}
+                        {/*{Here, add transcript={the transcript sent from speechwriter to redux}}*/}
+                        {this.state.grammar && <Grammar />}
                         </div>
                         <div id="prondict" className="col-md-5">
                             {this.state.shouldShoulPron && <PronDict />}
