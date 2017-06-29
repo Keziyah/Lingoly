@@ -9,7 +9,6 @@ const saved = (state = initialState, action) => {
 
     switch (action.type) {
             case GET_SPEECHES:
-            console.log(action.payload)
             newState.speeches = action.payload;
             break; 
         default:

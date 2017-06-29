@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {findWord} from '../actions/index.js'
 import axios from 'axios'
 
-export default class PronDict extends Component {
+class PronDict extends Component {
     constructor() {
         super()
 
@@ -22,21 +24,22 @@ export default class PronDict extends Component {
     //Using Merriam-Webster's learners dictionary API. 
     findWord(e) {
         e.preventDefault()
-        console.log("finding the word...")
-        axios.get('http://www.dictionaryapi.com/api/v1/references/learners/xml/' + this.state.word + '?key=67fa1c28-f1ac-4b66-a206-90aa0dcf2d34')
-            .then(res => {
-                this.setState({ data: res.data })
-            })
-            .then(() => {
-                const wavFile = this.state.data.match(/<wav>(.+?)<\/wav>/)[1]
-                this.setState({ audiosrc: 'http://media.merriam-webster.com/soundc11/' + wavFile[0] + '/' + wavFile })
-            })
-            .then(() => {
-                const pron = this.state.data.match(/<pr>(.+?)<\/pr>/)[1]
-                this.setState({ pron: pron })
-            })
-            .catch(console.error)
-        console.log("STATE", this.state)
+        this.props.findWord(this.state.word)
+
+        // axios.get('http://www.dictionaryapi.com/api/v1/references/learners/xml/' + this.state.word + '?key=67fa1c28-f1ac-4b66-a206-90aa0dcf2d34')
+        //     .then(res => {
+        //         this.setState({ data: res.data })
+        //     })
+        //     .then(() => {
+        //         const wavFile = this.state.data.match(/<wav>(.+?)<\/wav>/)[1]
+        //         this.setState({ audiosrc: 'http://media.merriam-webster.com/soundc11/' + wavFile[0] + '/' + wavFile })
+        //     })
+        //     .then(() => {
+        //         const pron = this.state.data.match(/<pr>(.+?)<\/pr>/)[1]
+        //         this.setState({ pron: pron })
+        //     })
+        //     .catch(console.error)
+        // console.log("STATE", this.state)
     }
 
     render() {
@@ -64,3 +67,5 @@ export default class PronDict extends Component {
         )
     }
 }
+
+export default connect(null, {findWord})(PronDict)
