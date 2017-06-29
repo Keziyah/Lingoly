@@ -63,7 +63,6 @@ class Home extends Component {
                     <div className="col-md-8">
                         <div className="col-md-7">
                         {this.state.shouldShowSpeechWriter && <SpeechWriter checkGrammar={this.toggleSpeechWriter}/>}
-                        {/*{Here, add transcript={the transcript sent from speechwriter to redux}}*/}
                         {this.state.grammar && <Grammar transcript={this.props.draft}/>}
                         </div>
                         <div id="prondict" className="col-md-5">

@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {correctGrammar} from '../actions/index.js'
 import axios from 'axios'
 import HighlightedTextarea from 'react-highlighted-textarea'
 
 //using the language tool api: https://languagetool.org/http-api/swagger-ui/#!/default/post_check 
 
-export default class Grammar extends Component {
+class Grammar extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             text: '',
             disabled: true,
-            corrections: [],
             grammarMessage: '',
             showHighlights: false
         }
@@ -32,15 +33,9 @@ export default class Grammar extends Component {
 
     checkGrammar(e) {
         e.preventDefault()
-        const newtext = this.state.text
+        this.props.correctGrammar(this.state.text)
 
-        axios.get('https://languagetool.org/api/v2/check?text=' + newtext + '&language=en')
-            .then(res => {
-                this.setState({ corrections: res.data.matches })
-            })
-            .catch(console.error)
-
-        if (!this.state.corrections.length) {
+        if (!this.props.corrections.length) {
             this.setState({ grammarMessage: "Checking..." })
         }
 
@@ -48,7 +43,7 @@ export default class Grammar extends Component {
     }
 
     doHighlight() {
-        let arr = this.state.corrections.map(mistake => {
+        let arr = this.props.corrections.map(mistake => {
             return [mistake.offset, mistake.length]
         })
         return arr
@@ -80,9 +75,9 @@ export default class Grammar extends Component {
                     }
 
                     <div className="corrections">
-                        {this.state.corrections.length ?
-                            this.state.corrections.map((thing, i) => {
-                                return <h4 key={i}>{i + 1}. {thing.message}</h4>
+                        {this.props.corrections.length ?
+                            this.props.corrections && this.props.corrections.map((thing, i) => {
+                                return <h4 key={Date.now()}>{i + 1}. {thing.message}</h4>
                             })
                             : this.state.grammarMessage || "Grammar looks fine."
                         }
@@ -92,6 +87,9 @@ export default class Grammar extends Component {
         )
     }
 }
+
+const mapState = ({correct}) => ({corrections: correct.correctedText})
+export default connect(mapState, {correctGrammar})(Grammar)
 
 //A person clicks show grammar checkers and this text area appears with what they said
 //Check grammar is disabled until they edit their speech. 
