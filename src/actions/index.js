@@ -68,16 +68,15 @@ export const allSpeeches = (res) => {
 export const FIND_WORD = "FIND_WORD"
 
 export const findWord = (word) => {
-    const wordData = {word: word}
     
     return dispatch => {
         axios.get('http://www.dictionaryapi.com/api/v1/references/learners/xml/' + word + '?key=67fa1c28-f1ac-4b66-a206-90aa0dcf2d34')
             .then(res => {
                 const wavFile = res.data.match(/<wav>(.+?)<\/wav>/)[1]
-                wordData.audiosrc = 'http://media.merriam-webster.com/soundc11/' + wavFile[0] + '/' + wavFile
-                wordData.pron = this.state.data.match(/<pr>(.+?)<\/pr>/)[1]
+                const audiosrc = 'http://media.merriam-webster.com/soundc11/' + wavFile[0] + '/' + wavFile
+                const pron = res.data.match(/<pr>(.+?)<\/pr>/)[1]
 
-                return dispatch(setWord(wordData))
+                return dispatch(setWord({word, audiosrc, pron}))
             })
             .catch(console.error)
     }
